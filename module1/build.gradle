@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+
+def generatedResources = "$buildDir/generated-resources/main"
+
+sourceSets {
+    main {
+        output.dir(generatedResources, builtBy: 'copySecond')
+    }
+    second {
+    }
+}
+
+task copySecond(type: Copy) {
+    from compileSecondJava
+    into generatedResources
+}
